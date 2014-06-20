@@ -1,4 +1,6 @@
-# Test suite examples
+## Test suite examples
+
+[![Build Status](https://travis-ci.org/jessiesiat/test-suite-examples.svg?branch=master)](https://travis-ci.org/jessiesiat/test-suite-examples)
 
 My playground for testing different test framework for PHP
 
