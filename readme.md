@@ -4,5 +4,5 @@
 
 My playground for testing different test framework for PHP
 
-> this test suite examples referes to testing framework such PHPUnit, PHPSpec, 
+> this test suite examples refers to testing framework such PHPUnit, PHPSpec, 
 > etc. 
