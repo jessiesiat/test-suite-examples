@@ -40,13 +40,13 @@ class HttpClient {
 	 * @param  string $params 
 	 * @return Symfony\Component\Routing\RouteCollection
 	 */
-	public function addRoute($routeName, $path, $params)
+	public function addRoute($routeName, $path, array $params)
 	{
-		$route = new Route($routeName, $params);
+		$route = new Route($path, $params);
 
 		$this->routeCollection->add($routeName, $route);
 
-		return $this->routeCollection;
+		return true;
 	}
 
 	/**
