@@ -1,5 +1,7 @@
 <?php
 
+namespace Test;
+
 class Subject {
 	
 	// name of the subject
@@ -49,7 +51,7 @@ class Subject {
 			return $this->data[$name];
 		}
 
-		throw new Exception('Undefined property via __get()');
+		throw new \Exception('Undefined property via __get()');
 	}
 
 }

@@ -6,6 +6,8 @@
  * is refered to as mocking.  
  */
 
+use Test\Subject;
+
 class MockTest extends PHPUnit_Framework_TestCase {
 	
 	public function testMockObserver()
@@ -13,7 +15,7 @@ class MockTest extends PHPUnit_Framework_TestCase {
 		// get mock object of Observer and we only need the update method.
 		// Although class Observer is available under SUT, on actual
 		// scenario we will use the real object.
-		$observer = $this->getMock('Observer', array('update'));
+		$observer = $this->getMock('Test\Observer', array('update'));
 
 		//initialize subject
 		$subject = new Subject('Mock testing');

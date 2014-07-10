@@ -12,12 +12,9 @@
 		"mockery/mockery": "dev-master"
 	},
 	"autoload": {
-		"psr-0": {
-			"Http": "src/"
-		},
-		"classmap": [
-			"src"
-		]
+		"psr-4": {
+			"Test\\": "src"
+		}
     },
     "minimum-stability": "dev"
 }

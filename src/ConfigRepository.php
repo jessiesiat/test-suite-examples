@@ -1,5 +1,7 @@
 <?php 
 
+namespace Test;
+
 use Illuminate\Config\Repository as Config;
 use Illuminate\Config\FileLoader;
 use Illuminate\Filesystem\Filesystem;

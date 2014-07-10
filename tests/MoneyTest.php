@@ -1,5 +1,7 @@
 <?php
 
+use Test\Money;
+
 class MoneyTest extends PHPUnit_Framework_TestCase
 {
     // ...

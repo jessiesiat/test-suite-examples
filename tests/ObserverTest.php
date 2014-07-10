@@ -1,5 +1,8 @@
 <?php
 
+use Test\Observer;
+use Test\Subject;
+
 class ObserverTest extends PHPUnit_Framework_TestCase {
 	
 	public function testObserverUpdateOutput()

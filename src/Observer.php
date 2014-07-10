@@ -1,5 +1,7 @@
 <?php
 
+namespace Test;
+
 class Observer {
 	
 	public function update(Subject $subject)
