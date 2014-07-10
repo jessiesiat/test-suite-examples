@@ -4,6 +4,7 @@ namespace Test\Event;
 
 use Symfony\Component\EventDispatcher\EventDispatcher as BaseEventDispatcher;
 use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class EventDispatcher {
 
@@ -21,6 +22,19 @@ class EventDispatcher {
 	}
 	
 	/**
+	 * Dispatches all listeners to an event.
+	 *
+	 * @param string $eventName
+	 * @return void
+	 */
+	public function dispatch($eventName)
+	{
+		return $this->dispatcher->dispatch($eventName);
+	}
+
+	/**
+	 * Add listener to a specific event
+	 *
 	 * @param string $eventName
 	 * @param callable $value
 	 * @return void
@@ -40,30 +54,47 @@ class EventDispatcher {
 	}
 
 	/**
-	 * @param string $eventName
-	 * @return void
-	 */
-	public function dispatch($eventName)
-	{
-		return $this->dispatcher->dispatch($eventName);
-	}
-
-	/**
+	 * Retuns the listeners of a specific event 
+	 *
 	 * @param string $eventName
 	 * @return array
 	 */
-	public function getListeners($eventName)
+	public function getListeners($eventName = null)
 	{
 		return $this->dispatcher->getListeners($eventName);
 	}
 
 	/**
+	 * Checks whether an event has listeners 
+	 *
 	 * @param string $eventName
 	 * @return boolean
 	 */
-	public function hasListeners($eventName)
+	public function hasListeners($eventName = null)
 	{
 		return $this->dispatcher->hasListeners($eventName);
+	}
+
+	/** 
+	 * Add event subscriber
+	 *
+	 * @param Symfony\Component\EventDispatcher\EventSubscriberInterface $subscriber
+	 * @return void
+	 */
+	public function addSubscriber(EventSubscriberInterface $subscriber)
+	{
+		$this->dispatcher->addSubscriber($subscriber);
+	}
+
+	/**
+	 * Remove event subscriber
+	 *
+	 * @param Symfony\Component\EventDispatcher\EventSubscriberInterface $subscriber
+	 * @param void
+	 */
+	public function removeSubscriber(EventSubscriberInterface $subscriber)
+	{
+		$this->dispatcher->removeSubscriber($subscriber);
 	}
 
 }
