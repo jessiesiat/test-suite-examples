@@ -1,5 +1,7 @@
 <?php
 
+use Test\ConfigRepository;
+
 class ConfigRepositoryTest extends PHPUnit_Framework_TestCase {
 	
 	protected $config;

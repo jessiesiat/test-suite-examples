@@ -8,6 +8,7 @@
  * readable Domain Specific Language (DSL). 
  */
 use \Mockery as m;
+use Test\Temperature;
 
 class TemperatureTest extends PHPUnit_Framework_TestCase {
 

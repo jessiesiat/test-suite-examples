@@ -17,7 +17,7 @@ class StubTest extends PHPUnit_Framework_TestCase {
 	public function testStub()
 	{
 		// create a stub for the Money class
-		$stub = $this->getMockBuilder('Money')
+		$stub = $this->getMockBuilder('Test\Money')
 					 ->disableOriginalConstructor()
 					 ->getMock();
 
@@ -33,7 +33,7 @@ class StubTest extends PHPUnit_Framework_TestCase {
 	public function testArgumentStub()
 	{
 		// create a stub for the Money class
-		$stub = $this->getMockBuilder('Money')
+		$stub = $this->getMockBuilder('Test\Money')
 					 ->disableOriginalConstructor()
 					 ->getMock();
 
@@ -49,7 +49,7 @@ class StubTest extends PHPUnit_Framework_TestCase {
 	public function testSelfStub()
 	{
 		// create a stub for the Money class
-		$stub = $this->getMockBuilder('Money')
+		$stub = $this->getMockBuilder('Test\Money')
 					 ->disableOriginalConstructor()
 					 ->getMock();
 
@@ -68,7 +68,7 @@ class StubTest extends PHPUnit_Framework_TestCase {
 	public function testThrowExceptionStub()
 	{
 		// create a stub for the Money class
-		$stub = $this->getMockBuilder('Money')
+		$stub = $this->getMockBuilder('Test\Money')
 					 ->disableOriginalConstructor()
 					 ->getMock();
 

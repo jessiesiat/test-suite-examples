@@ -1,6 +1,6 @@
 <?php
 
-use Http\HttpClient;
+use Test\Http\HttpClient;
 
 class HttpClientTest extends PHPUnit_Framework_TestCase {
 

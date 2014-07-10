@@ -1,5 +1,8 @@
 <?php
 
+use Test\Observer;
+use Test\Subject;
+
 class SubjectTest extends PHPUnit_Framework_TestCase {
 
 	// Observer class

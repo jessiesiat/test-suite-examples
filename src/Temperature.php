@@ -1,5 +1,7 @@
 <?php
 
+namespace Test;
+
 class Temperature {
 	
 	public function __construct($service)
