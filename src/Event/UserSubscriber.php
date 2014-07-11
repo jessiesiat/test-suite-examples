@@ -7,8 +7,8 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class UserSubscriber implements EventSubscriberInterface {
 
 	public static $subscribers = array(
-		'login' => 'loginEventHandler',
-		'logout' => 'logoutEventHandler'
+		'login' => 'loginHandler',
+		'logout' => 'logoutHandler'
 		);
 
 	/**
@@ -26,7 +26,7 @@ class UserSubscriber implements EventSubscriberInterface {
 	 *
 	 * @return string
 	 */
-	public function loginEventHandler()
+	public function loginHandler()
 	{
 		echo 'user login';
 	}
@@ -36,7 +36,7 @@ class UserSubscriber implements EventSubscriberInterface {
 	 * 
 	 * @return string
 	 */
-	public function logoutEventHandler()
+	public function logoutHandler()
 	{
 		echo 'user logout';
 	}
