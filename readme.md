@@ -1,8 +1,18 @@
-## Test suite examples
+## Test Suite Examples
 
 [![Build Status](https://travis-ci.org/jessiesiat/test-suite-examples.svg?branch=master)](https://travis-ci.org/jessiesiat/test-suite-examples)
 
-My playground for testing different test framework for PHP
+My playground for testing
 
+<<<<<<< HEAD
 > this test suite examples refers to testing framework such PHPUnit, PHPSpec, 
 > etc. 
+=======
+### Running Test
+
+Clone this and run `phpunit`
+
+	git clone https://github.com/jessiesiat/test-suite-examples.git
+	cd test-suite-examples
+	phpunit
+>>>>>>> develop
