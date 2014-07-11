@@ -10,4 +10,5 @@ Clone this and run `phpunit`
 
 	git clone https://github.com/jessiesiat/test-suite-examples.git
 	cd test-suite-examples
+	composer.phar install
 	phpunit
