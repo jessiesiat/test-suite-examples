@@ -73,7 +73,7 @@ class HttpClient {
 		$kernel = new HttpKernel($dispatcher, $resolver);
 
 		// handle the request and send response
-    	$kernel->handle($request)->send();
+    	return $kernel->handle($request)->send();
 	}
 
 	/**

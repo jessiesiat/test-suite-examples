@@ -1,6 +1,8 @@
 <?php
 
 use Test\Http\HttpClient;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class HttpClientTest extends PHPUnit_Framework_TestCase {
 
@@ -27,6 +29,22 @@ class HttpClientTest extends PHPUnit_Framework_TestCase {
 		$param = $this->httpClient->matchPath('/hello');
 
 		$this->assertEquals('foo', $param['controller']);
+	}
+
+	public function testClientCanReturnResponse()
+	{
+		$this->httpClient->addRoute('home', '/', array('_controller' => 
+			function(Request $request) {
+				return new Response("You have arrived", 500, array('Content-Type' => 'text/plain'));
+			}
+		));
+
+		// assertions
+		$response = $this->httpClient->run();
+		$this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
+		$this->assertEquals('You have arrived', $response->getContent());
+		$this->assertEquals(500, $response->getStatusCode());
+		$this->assertTrue($response->headers->contains('Content-Type', 'text/plain'));
 	}
 
 }
