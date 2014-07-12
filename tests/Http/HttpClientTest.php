@@ -21,10 +21,10 @@ class HttpClientTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue($route);
 	}
 
-	public function testCanMatchARoute()
+	public function testCanMatchAPath()
 	{
 		$this->httpClient->addRoute('hello', '/hello', array('controller' => 'foo'));
-		$param = $this->httpClient->match('/hello');
+		$param = $this->httpClient->matchPath('/hello');
 
 		$this->assertEquals('foo', $param['controller']);
 	}
