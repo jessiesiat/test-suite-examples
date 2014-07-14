@@ -10,13 +10,16 @@ use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\HttpKernel\EventListener\RouterListener;
+use Symfony\Component\HttpKernel\HttpKernel;
+use Symfony\Component\HttpKernel\Controller\ControllerResolver;
 
 class HttpClient {
 
 	/**
 	 * @var Symfony\Component\Routing\RouteCollection
 	 */
-	private $routeCollection;
+	private $routesCollection;
 
 	/**
 	 * @var Symfony\Component\Routing\RequestContext
@@ -28,7 +31,7 @@ class HttpClient {
 	 */
 	public function __construct()
 	{
-		$this->routeCollection = $this->routeCollection ?: new RouteCollection();
+		$this->routesCollection = $this->routesCollection ?: new RouteCollection();
 		$this->requestContext = $this->requestContext ?: new RequestContext();
 	}
 
@@ -44,9 +47,55 @@ class HttpClient {
 	{
 		$route = new Route($path, $params);
 
-		$this->routeCollection->add($routeName, $route);
+		$this->routesCollection->add($routeName, $route);
 
 		return true;
+	}
+
+	/**
+	 * Run the application matching a request and returns a response
+	 * @return Symfony\Component\HttpFoundation\Response
+	 */
+	public function run()
+	{
+		$request = Request::createFromGlobals();
+
+		// create request context
+		$this->createRequestContext($request);
+
+		// setup url matcher and event dispatcher
+		$dispatcher = $this->setUpDispatcher($this->setUpUrlMatcher());
+
+		// setup controller resolver
+		$resolver = new ControllerResolver();
+
+		// setup core http kernel
+		$kernel = new HttpKernel($dispatcher, $resolver);
+
+		// handle the request and send response
+    	return $kernel->handle($request)->send();
+	}
+
+	/**
+	 * Creates request context
+	 *
+	 * @return void
+	 */
+	public function createRequestContext($request)
+	{
+		$this->requestContext->fromRequest($request);
+	}
+
+	/**
+	 * Url Matcher setup
+	 *
+	 * @return Symfony\Component\Routing\Matcher\UrlMatcher  
+	 */
+	public function setUpUrlMatcher()
+	{
+		$urlMatcher = new UrlMatcher($this->routesCollection, $this->requestContext);
+
+		return $urlMatcher;
 	}
 
 	/**
@@ -55,11 +104,25 @@ class HttpClient {
 	 * @param  string $path 
 	 * @return mixed  
 	 */
-	public function match($path)
+	public function matchPath($path)
 	{
-		$urlMatcher = new UrlMatcher($this->routeCollection, $this->requestContext);
+		$urlMatcher = new UrlMatcher($this->routesCollection, $this->requestContext);
 
 		return $urlMatcher->match($path);
+	}
+
+	/** 
+	 * Setup Event Dispatcher
+	 *
+	 * @return Symfony\Component\EventDispatcher\EventDispatcher
+	 */
+	public function setUpDispatcher(UrlMatcher $urlMatcher)
+	{
+		$dispatcher = new EventDispatcher();
+    
+    	$dispatcher->addSubscriber(new RouterListener($urlMatcher));
+
+    	return $dispatcher;
 	}
 
 }
